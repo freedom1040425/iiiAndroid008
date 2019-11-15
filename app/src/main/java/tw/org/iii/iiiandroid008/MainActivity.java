@@ -44,34 +44,32 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 @Override
-public void onRequestPermissionsResult(int requestCode,@NonNull
-            String[] permissions,@NonNull int[] grantResults) {
+public void onRequestPermissionsResult(int requestCode,@NonNull String[] permissions,
+                                       @NonNull int[] grantResults) {
             super.onRequestPermissionsResult(requestCode,permissions,grantResults);
             if(requestCode==9487){
-                if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED) {
+                if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
                      init();
-                }else {
+                }
+                else{
                     finish();
                 }
-
             }
-    }
-private void init(){
+}
 
+private void init(){
     //系統上要有的物件 直接get 不用new
     content = findViewById(R.id.content);
     sp = getSharedPreferences("brad", MODE_PRIVATE);//針對檔名brad的data進行讀取
     editor = sp.edit();//內部存取的物件 抓出來
     sdroot = Environment.getExternalStorageDirectory();
     Log.v("brad",sdroot.getAbsolutePath());
-
     approot = new File(sdroot,"Android/data/"+getPackageName());
             if (!approot.exists()){
                 approot.mkdirs();
     }
+}
 
-
-    }
 
 
 
@@ -144,7 +142,7 @@ private void init(){
 //內存空間 user 可以自行清除
 
         public void test6 (View view){
-            File file2 = new File(sdroot, "brad.ok");
+            File file2 = new File(approot, "brad.ok");
             try {
                 FileOutputStream fout =
                         new FileOutputStream(file2);
