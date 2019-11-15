@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private SharedPreferences sp; //外界存取
-    private SharedPreferences.Editor editor; //內部類別
+    private SharedPreferences sp; //外部存取
+    private SharedPreferences.Editor editor; //內部存取類別
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,3 +38,4 @@ public class MainActivity extends AppCompatActivity {
 }
 //user 偏好設定 要儲存
 //user 實體檔案儲存--網際網路觀念相同 但+上通訊協定
+//內存空間 user 可以自行清除

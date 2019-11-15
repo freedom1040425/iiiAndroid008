@@ -12,12 +12,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:onClick="test1"
+    android:text="test1"
 
     />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="test2"
+        android:text="test2"
 
         />
 
