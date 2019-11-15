@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         //檢察自我權限 是否沒有得到授權
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -88,7 +90,7 @@ private void init(){
         int stage = sp.getInt("stage", 1);
         Log.v("brad", username + ":" + stage + ":" + isSound);
     }
-
+///test3+4 沒有路徑表示固定存取  輸出比讀取容易
     public void test3(View view) { //內存一個資料
         try { //完整輸出一個檔案
             FileOutputStream fout = openFileOutput("brad.txt", MODE_PRIVATE);//覆蓋
@@ -103,7 +105,7 @@ private void init(){
         }
     }
 
-
+  //先讀buf 將資料弄成 --->宣告成1024byte  在讀 在建立字串物件實體
     public void test4(View view) {
         try (FileInputStream fin = openFileInput("brad.txt")){
             StringBuffer sb= new StringBuffer();
@@ -121,7 +123,7 @@ private void init(){
          Log.v("brad",e.toString());
         }//自動關閉機制
     }
-
+// 重點在串流的建立 用JAVA 原生地建立方式 宣告父FILE 位置
     public void test5(View view) {
         File file1 = new File(sdroot, "brad.ok");
         try {
