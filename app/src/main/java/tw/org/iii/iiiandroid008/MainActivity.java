@@ -17,11 +17,13 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences sp; //外部存取
     private SharedPreferences.Editor editor; //內部存取類別
     private TextView content;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //系統上要有的物件 直接get 不用new
+        content = findViewById(R.id.content);
         sp = getSharedPreferences("brad", MODE_PRIVATE);//針對檔名brad的data進行讀取
         editor = sp.edit();//內部存取的物件 抓出來
     }
@@ -60,10 +62,14 @@ public class MainActivity extends AppCompatActivity {
     public void test4(View view) {
         try (FileInputStream fin = openFileInput("brad.txt")){
             StringBuffer sb= new StringBuffer();
-            int c; //如果讀的值 不等於-1 繼續讀
+           /*int c; //如果讀的值 不等於-1 繼續讀
             while ((c = fin.read())!=-1){
+            sb.append((char)c);改良成下面*/
+            byte[] buf = new byte[1024]; //一次讀比較多byte 速度比較快
+            int len;
+            while ((len = fin.read(buf))!=-1){
                // Log.v("brad","==>"+(char)c); //強制轉型 沒有的話就是用數字呈現
-            sb.append((char)c);
+            sb.append(new String(buf,0,len));
             }
         content.setText(sb.toString());
         }catch (Exception e){
